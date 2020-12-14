@@ -8,7 +8,7 @@
         </div>
         <div class="custom-control custom-switch">
             <label class="custom-control-label-before">Celsius</label>
-            <input type="checkbox" class="custom-control-input" id="customSwitch1">
+            <input type="checkbox" v-model="checked" class="custom-control-input" id="customSwitch1" @change="changeUnit()">
             <label class="custom-control-label" for="customSwitch1">Fahrenheit</label>
         </div>
     </form>
@@ -23,17 +23,37 @@ import axios from 'axios'
 export default {
     name: "Input",
     props:['theWeather'],
+    data() {
+        return{
+            //Set the default zip
+            zip: 65804,
+            //set the default units
+            units : 'metric',
+            checked : ''
+        }
+    },
     methods : {
         ///Summary: gets the weather using axios get method
         ///Param (zip) : the zip code, default is 65804 for Springfield, MO
         ///Param (units) : the unit of mesurments (metric | imperial), default is metric for celcius
-        getWeather(zip = 65804,units = 'metric')
+        getWeather(zip = this.zip,units = this.units)
         {
             axios.get('http://api.openweathermap.org/data/2.5/weather?zip='+ zip + ',us&units='+ units +'&appid=884d6cdb392caa239f71a909118eee45')
             .then ( (response) => {
             var weather = response.data;
             this.$emit('update', weather);
             })
+        },
+        changeUnit(){
+            if(this.checked){
+                this.units = 'imperial';
+            }
+            else{
+                this.units = 'metric';
+            }
+
+            //Call the getWeather() to update the weather everytime the switch is changed
+            this.getWeather(this.zip, this.units);
         }
     },
     //get weather on load with the default parameters.
