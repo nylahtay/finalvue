@@ -57,7 +57,8 @@ export default {
                 this.errored = true;
                 if (error.response.status == 404) { // tHAT DOES NOT WORK
                     this.feedback = "Error retreaving the Weather: This zip code is not found";
-                document.querySelector('.invalid-feedback').style.display = 'block';
+                    document.querySelector('.invalid-feedback').style.display = 'block';
+                    document.querySelector('.weatherbox').style.display = 'none';
                 }
             })
         },
@@ -103,6 +104,7 @@ export default {
         },
         ///Summary: this calls the getWeather() whenever the submit button is clicked or the 'enter' key is pressed while in the zip input
         onSubmit(){
+            document.querySelector('.weatherbox').style.display = 'block';
             document.querySelector('.invalid-feedback').style.display = 'none';
             //Validate the zip
             if (this.isValid())
@@ -123,6 +125,13 @@ export default {
 <style scoped>
     label.custom-control-label-before {
         margin-right: 3em;
+    }
+    .custom-control-label:before {
+        pointer-events: none;
+        background-color: #aa00ff;
+    }
+    .custom-switch .custom-control-label:after {
+        background-color: #ffffff;
     }
 </style>
 
