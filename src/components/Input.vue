@@ -47,7 +47,7 @@ export default {
         ///Param (units) : the unit of mesurments (metric | imperial), default is metric for celcius
         getWeather(zip = this.zip,units = this.units)
         {
-            axios.get('http://api.openweathermap.org/data/2.5/weather?zip='+ zip + ',us&units='+ units +'&appid=884d6cdb392caa239f71a909118eee45')
+            axios.get('https://api.openweathermap.org/data/2.5/weather?zip='+ zip + ',us&units='+ units +'&appid=884d6cdb392caa239f71a909118eee45')
             .then ( (response) => {
             var weather = response.data;
             this.$emit('update', weather);
