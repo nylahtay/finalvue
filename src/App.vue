@@ -3,6 +3,7 @@
     <!-- THis is wher we can set the header text -->
     <Header theTitle="Get the Forcast"/>
     <Input />
+    <Weatherbox v-bind:theWeather="weather"/>
   </div>
 </template>
 
@@ -12,6 +13,9 @@ import Header from './components/Header.vue'
 
 //importing the component for Input
 import Input from './components/Input.vue'
+
+//Import weatherbox
+import Weatherbox from './components/Weatherbox.vue'
 
 //importing Axios
 import axios from 'axios'
@@ -24,7 +28,8 @@ export default {
   name: 'App',
   components: {
     Header,
-    Input
+    Input,
+    Weatherbox
   },
   data()
   {
@@ -38,7 +43,7 @@ export default {
   //this is the TV show json.
   mounted()
   {
-    axios.get('http://api.openweathermap.org/data/2.5/weather?zip=65804,us&appid=884d6cdb392caa239f71a909118eee45')
+    axios.get('http://api.openweathermap.org/data/2.5/weather?zip=65804,us&units=metric&appid=884d6cdb392caa239f71a909118eee45')
     .then ( (response) => {
       this.weather = response.data;
     })
