@@ -14,8 +14,40 @@
     </form>
 </template>
 
+
+<script>
+
+//importing Axios
+import axios from 'axios'
+
+export default {
+    name: "Input",
+    props:['theWeather'],
+    methods : {
+        ///Summary: gets the weather using axios get method
+        ///Param (zip) : the zip code, default is 65804 for Springfield, MO
+        ///Param (units) : the unit of mesurments (metric | imperial), default is metric for celcius
+        getWeather(zip = 65804,units = 'metric')
+        {
+            axios.get('http://api.openweathermap.org/data/2.5/weather?zip='+ zip + ',us&units='+ units +'&appid=884d6cdb392caa239f71a909118eee45')
+            .then ( (response) => {
+            var weather = response.data;
+            this.$emit('update', weather);
+            })
+        }
+    },
+    //get weather on load with the default parameters.
+    mounted() {
+        this.getWeather();
+    }
+}
+
+</script>
+
 <style scoped>
     label.custom-control-label-before {
         margin-right: 3em;
     }
 </style>
+
+
