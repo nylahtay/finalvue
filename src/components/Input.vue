@@ -1,10 +1,13 @@
 <template>
-    <form>
+    <form v-on:submit.prevent="onSubmit">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1">Zip Code</span>
             </div>
-            <input type="text" class="form-control" placeholder="65804" aria-label="Username" aria-describedby="basic-addon1">
+            <input type="text" v-model="zip" class="form-control" placeholder="65804" aria-label="Username" aria-describedby="basic-addon1">
+            <div class="input-group-prepend">
+                <button type="submit" class="btn btn-primary"> Submit </button>
+            </div>
         </div>
         <div class="custom-control custom-switch">
             <label class="custom-control-label-before">Celsius</label>
@@ -51,6 +54,13 @@ export default {
             else{
                 this.units = 'metric';
             }
+
+            //Call the getWeather() to update the weather everytime the switch is changed
+            this.getWeather(this.zip, this.units);
+        },
+        onSubmit(){
+            //update the zip
+            //this.zip = 
 
             //Call the getWeather() to update the weather everytime the switch is changed
             this.getWeather(this.zip, this.units);
