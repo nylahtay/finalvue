@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <!-- THis is wher we can set the header text -->
+    <!-- THis is where we can set the header text -->
     <Header theTitle="Get the Forcast"/>
-    <Input vbind:theWeather="weather" @update="handleUpdate"/>
-    <Weatherbox v-bind:theWeather="weather"/>
+
+    <Input @update="handleUpdate" />
+    
+    <Weatherbox v-bind:theWeather="weather" />
   </div>
 </template>
 
@@ -16,9 +18,6 @@ import Input from './components/Input.vue'
 
 //Import weatherbox
 import Weatherbox from './components/Weatherbox.vue'
-
-//importing Axios
-//import axios from 'axios'
 
 //importing Bootstrap
 import 'bootstrap'
@@ -35,18 +34,13 @@ export default {
   {
     //create the weather object
     return {
-      weather: []
+      weather: [""]
     }
   },
   methods: {
     handleUpdate(info) {
       this.weather = info;
     }
-  },
-  //Get weather info from the API.
-  mounted()
-  {
-    //
   }
 }
 </script>
