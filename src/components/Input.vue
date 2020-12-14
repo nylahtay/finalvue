@@ -56,7 +56,7 @@ export default {
                 console.log(error)
                 this.errored = true;
                 if (error.response.status == 404) { // tHAT DOES NOT WORK
-                    this.feedback = "This zip code is not found";
+                    this.feedback = "Error retreaving the Weather: This zip code is not found";
                 document.querySelector('.invalid-feedback').style.display = 'block';
                 }
             })
