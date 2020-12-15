@@ -75,26 +75,34 @@ export default {
             //Call the getWeather() to update the weather everytime the switch is changed
             this.getWeather(this.zip, this.units);
         },
+        ///Summary: Checks if the zip code is valid
         isValid(){
+            //set valid = true
             var valid = true;
+
+            //reset feedback to not display
             document.querySelector('.invalid-feedback').style.display = 'none';
+
+            //regex for a good zip code
             var zipCodePattern = /^\d{5}$|^\d{5}-\d{4}$/;
+
+            //regex to check if there are text characters
             var hasCharacters = /[A-z]/;
             
+            //see if zip has text characters
             if(hasCharacters.test(this.zip)){
                 valid = false;
                 this.feedback = "Zip code cannot contain any letters";
                 document.querySelector('.invalid-feedback').style.display = 'block';
             }
-            
+            //see if less than 5 characters
             else if(this.zip.length < 5)
             {
                 valid = false;
                 this.feedback = "Zip code must be at least 5 digits";
                 document.querySelector('.invalid-feedback').style.display = 'block';
             }
-
-
+            //Check if it follows a normal zip format
             else if(!zipCodePattern.test(this.zip)){
                 valid = false;
                 this.feedback = "Not in a valid zip code format";

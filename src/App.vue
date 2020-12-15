@@ -3,8 +3,10 @@
     <!-- THis is where we can set the header text -->
     <Header theTitle="Get the Forcast"/>
 
+    <!-- This @update will return the weather object from the Input component weather into the App weather object -->
     <Input @update="handleUpdate" />
     
+    <!-- Send the weather object to the weatherbox component -->
     <Weatherbox v-bind:theWeather="weather" />
   </div>
 </template>
