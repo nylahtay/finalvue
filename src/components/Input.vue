@@ -57,8 +57,8 @@ export default {
                 this.errored = true;
                 if (error.response.status == 404) { // tHAT DOES NOT WORK
                     this.feedback = "Error retreaving the Weather: This zip code is not found";
-                    document.querySelector('.invalid-feedback').style.display = 'block';
                     document.querySelector('.weatherbox').style.display = 'none';
+                    document.querySelector('.invalid-feedback').style.display = 'block';
                 }
             })
         },
